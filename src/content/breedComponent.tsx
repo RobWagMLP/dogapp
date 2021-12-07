@@ -4,7 +4,7 @@ import KeyValueComponent from "../components/keyValueComponent/keyValueComponent
 import { back } from "../components/svgs/svgs";
 import { baseUrlImg } from "../config";
 import { Breed } from "../logic/api/interfaces";
-import { coalesce, valueFromNullableObject } from "../logic/utils";
+import { coalesce } from "../logic/utils";
 
 interface IProps {
    breed: Breed;
@@ -43,11 +43,11 @@ export default class BreedComponent extends React.Component<IProps> {
                             />
                             <KeyValueComponent 
                                 description={"Height"}
-                                value={coalesce("Not set", valueFromNullableObject(["metric", "imperial"], this.props.breed.height) ) }
+                                value={coalesce("Not set", this.props.breed.height?.metric, this.props.breed.height?.imperial ) }
                             />
                             <KeyValueComponent 
                                 description={"Weight"}
-                                value={coalesce("Not set", valueFromNullableObject(["metric", "imperial"], this.props.breed.weight) ) }
+                                value={coalesce("Not set", this.props.breed.weight?.metric, this.props.breed.weight?.imperial ) }
                             />
                         </BreedDescriptionWrapper>
                     </BreedElementWrapper>
