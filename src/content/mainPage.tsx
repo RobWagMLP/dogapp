@@ -42,7 +42,9 @@ export default class MainPage extends React.Component<IProps, IState> {
                 console.log(error);
             }); });
     }
-
+    /**
+     * decided to not use a router here, since its only 2 pages which are easily controlled by a single component
+     */
     render()  {
         return (
             <Main>
@@ -67,5 +69,5 @@ export default class MainPage extends React.Component<IProps, IState> {
                                     />
                 }
             </Main>);
-    } // decided here to make it as a single-component, so i do not lose the already fetched data between breed-view and returning to dogview. Could have used a store too, but this seems kinda overtuned then
+    } 
 }     

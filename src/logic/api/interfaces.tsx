@@ -4,7 +4,6 @@ export interface Dog {
     url?: string;
     width?: number;
     breeds: Array<Breed>;
-    categories: Array<Category>;
     [otherOptions: string]: unknown;
 }
 
@@ -25,9 +24,4 @@ export interface Breed {
     country_code?: string;
     alt_names?: string;
     [otherOptions: string]: unknown;
-}
-
-export interface Category {
-    id: number;
-    name: string;
 }

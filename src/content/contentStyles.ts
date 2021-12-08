@@ -20,6 +20,9 @@ export const Main = styled(ColumnBox)`
     min-width: 300px;
     background-color: ${theme.backgroundColor};
     border: 4px solid ${theme.primaryColor};
+    @media only screen and (max-width: 540px) {
+        margin: 4px;
+    }
 `;
 
 export const TitleFront = styled.div`
