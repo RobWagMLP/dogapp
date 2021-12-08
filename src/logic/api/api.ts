@@ -13,6 +13,5 @@ export const imageSearch = async (page: number): Promise<Array<Dog>> => {
             method:  method ,
         }
         const response = await fetch(baseUrl + urlPath + queryParams, meta);
-        console.log(response);
         return await response.json() as Array<Dog>;
 }
