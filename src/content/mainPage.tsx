@@ -31,16 +31,14 @@ export default class MainPage extends React.Component<IProps, IState> {
     getDogData(page: number) {
         this.setState({
             loading: true
-        }, () => {
-            imageSearch(page).then((response: Array<Dog>) => {
-                this.setState({
-                    dogData: response,
-                    currentPage: page,
-                    loading: false
-                });
-            }).catch((error: any) => {
-                console.log(error);
-            }); });
+        }, async () => {
+            const response = await  imageSearch(page);
+            this.setState({
+                dogData: response,
+                loading: false
+            })
+        });
+        
     }
     /**
      * decided to not use a router here, since its only 2 pages which are easily controlled by a single component

@@ -1,29 +1,18 @@
 import { apikey, baseUrl, limitPerPage, resultOrder } from "../../config";
 import { Dog } from "./interfaces";
-import { ajax, AjaxRequest, AjaxResponse } from 'rxjs/ajax';
 
-export const imageSearch = (page: number): Promise<Array<Dog>> => {
-    return new Promise<Array<Dog>>((resolve) => {
+export const imageSearch = async (page: number): Promise<Array<Dog>> => {
         const method = 'GET';
         const urlPath = 'images/search';
         const queryParams = `?page=${page}&limit=${limitPerPage}&order=${resultOrder}`;
         const headers = {
             "x-api-key": apikey 
         };
-        const requestParams: AjaxRequest = {
-            url: baseUrl + urlPath + queryParams,
-            method: method,
+        const meta = {
             headers: headers,
-            async: true,
-            crossDomain: true,
-        };
-        ajax(requestParams)
-            .toPromise()
-            .then((response: AjaxResponse) => {
-                return resolve(response.response as Array<Dog>);
-            })
-            .catch((error: any) => {
-                return resolve(error.response);
-            });
-    });
+            method:  method ,
+        }
+        const response = await fetch(baseUrl + urlPath + queryParams, meta);
+        console.log(response);
+        return await response.json() as Array<Dog>;
 }
